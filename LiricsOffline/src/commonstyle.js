@@ -1,0 +1,1 @@
+export const CommonColor='#8f929b';
