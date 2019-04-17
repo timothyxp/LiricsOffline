@@ -21,11 +21,15 @@ class Search extends React.Component {
 	}
 
 	handleSearch = () => { 
-		//get
+		
 	}
 
 	goToProfile = () => {
 		this.props.router.replace.Profile({},{type:'none'})
+	}
+
+	goToOffline = () => {
+		this.props.router.replace.Offline({},{type:'none'})
 	}
 
 	render() {
@@ -42,7 +46,7 @@ class Search extends React.Component {
 					Quit={this.props.router.pop}
 					Profile={this.goToProfile}
 					Search={()=>{}}
-					Concert ={()=>{}}
+					Offline={this.goToOffline}
 				/>
 			</View>
 		)

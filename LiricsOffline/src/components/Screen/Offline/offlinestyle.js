@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
 		backgroundColor: CommonColor
 	},
 	'Content':{
-		
+		flex: 1,
+		flexDirection: 'column',
 	},
 });

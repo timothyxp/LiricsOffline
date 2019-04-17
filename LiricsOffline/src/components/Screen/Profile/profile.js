@@ -14,9 +14,8 @@ export default class Profile extends React.Component {
 		};
 	}
 
-	goToConcerts = () => {
-		this.props.router.replace.MainMenu({
-			socket:this.state.socket
+	goToOffline = () => {
+		this.props.router.replace.Offline({
 		},{type:'none'});
 	}
 
@@ -83,7 +82,7 @@ export default class Profile extends React.Component {
 				Quit={this.props.router.pop}
 				Profile={()=>{}}
 				Search={this.goToSearch}
-				Concert ={this.goToConcerts}
+				Offline ={this.goToOffline}
 			/>
 			</View>
 		);
