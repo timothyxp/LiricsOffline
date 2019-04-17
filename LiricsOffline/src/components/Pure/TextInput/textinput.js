@@ -25,12 +25,13 @@ Input.defaultProps={
 
 const styles=StyleSheet.create({
 	TextInput:{
-		backgroundColor: '#eee',
 		opacity: .8,
 		paddingVertical: 12,
 		paddingHorizontal: 15,
 		marginVertical: 8,
 		marginHorizontal: 0,
 		width: '100%',
+		backgroundColor: '#eee',
+		borderRadius: 15,
 	}
 });

@@ -1,0 +1,27 @@
+{
+  "name": "liricsoffline",
+  "version": "0.0.1",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "description": "Application Description",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npm/npm.git"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "osmosis": "^1.1.10"
+  },
+  "bugs": {
+    "url": "https://github.com/npm/npm/issues"
+  },
+  "homepage": "https://github.com/npm/npm#readme",
+  "keywords": [
+    "lirics",
+    "offline"
+  ],
+  "author": "timothyxp",
+  "license": "ISC"
+}

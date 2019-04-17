@@ -27,7 +27,7 @@ class Offline extends React.Component {
 				<View style={styles.Content}>
 				</View>
 				<Footer 
-					active='Footer'
+					active='Offline'
 					Quit={this.props.router.pop}
 					Profile={this.goToProfile}
 					Search={this.goToSearch}
