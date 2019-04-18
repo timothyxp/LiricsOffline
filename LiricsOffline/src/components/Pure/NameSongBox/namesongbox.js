@@ -14,7 +14,7 @@ class NameSongBox extends React.Component {
 		return( 
 			<View style={styles.NameBox}>	
 				<ScrollView>
-				{this.props.names == '' ?
+				{this.props.names == undefined ?
 				<Text></Text> :
 					this.props.names[0].songs.map((key, index)=>{
 					return (
@@ -23,7 +23,8 @@ class NameSongBox extends React.Component {
 							onPress={()=>this.props.goToSong.call(this.props.parent, index)}>
 								<Text style={styles.NameText}>{key}</Text>
 							</TouchableOpacity>
-							<TouchableOpacity style={styles.Download}>
+							<TouchableOpacity style={styles.Download}
+							onPress={()=>this.props.saveSong.call(this.props.parent, index)}>
 								<Image source={require('../../../images/download.png')}
 								style={{width: 25,height: 25,}}/>
 							</TouchableOpacity>

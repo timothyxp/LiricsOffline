@@ -17,8 +17,34 @@ class Offline extends React.Component {
 
 	goToSearch = () => {
 		this.props.router.replace.Search({
-
 		},{type:'none'});
+	}
+
+	async GetToken(token) {
+		try{
+			const token = await AsyncStorage.getItem('@storage:'+token);
+			return token;
+		}
+		catch{
+			console.log('error to get token', token);
+		}
+	}
+
+	async SetToken(token, data) {
+		try{
+			await AsyncStorage.setItem('@storage:'+token, data);
+			console.log('set token', token);
+		}
+		catch{
+			console.log('cant set token', token);
+		}
+	}
+
+	componentDidMount(){
+		this.GetToken('song').
+		then(data=>{
+			console.log(data);
+		})
 	}
 
 	render() {

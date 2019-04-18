@@ -30,6 +30,13 @@ class Lirics extends React.Component {
 		})
 	}
 
+	goBack = () => {
+		this.props.router.stack[0].replace.Search({
+				data:this.props.data,
+				artist:this.state.artist
+		}, {type:'none'});
+	}
+
 	render() {
 		return (
 			<View style={styles.Lirics}>
@@ -63,7 +70,7 @@ class Lirics extends React.Component {
 					active='Search'
 					Quit={this.props.router.pop}
 					Profile={this.props.goToProfile}
-					Search={this.props.router.pop}
+					Search={this.goBack}		
 					Offline={this.props.goToOffline}
 				/>
 			</View>

@@ -1,5 +1,6 @@
 import {View, Text, ImageBackground,
  StyleSheet, TouchableOpacity, Dimensions,Image} from 'react-native';
+ import FooterButton from '../FooterButton/footerbutton.js';
 import React from 'react';
 
 const size=28;
@@ -9,84 +10,68 @@ export default class Footer extends React.Component {
 	Quit() {
 		if (this.props.active==='Quit'){
 			return(
-				<TouchableOpacity style={styles.FooterButton}
-				onPress={()=>this.props.Quit()}>
-					<ImageBackground source={require('../../../images/exitActive.png')}
-					style={{width:size,height:size}}>	
-					</ImageBackground>
-				</TouchableOpacity>
+				<FooterButton
+					onPress={this.props.Quit}
+					image="exitActivate"
+				/>
 			);
 		}
 		return(
-			<TouchableOpacity style={styles.FooterButton}
-			onPress={()=>this.props.Quit()}>
-				<ImageBackground source={require('../../../images/exit.png')}
-				style={{width:size,height:size}}>	
-				</ImageBackground>
-			</TouchableOpacity>
+			<FooterButton
+				onPress={this.props.Quit}
+				image="exit"
+			/>
 		);
 	}
 
 	Offline() {
 		if (this.props.active==='Offline'){
 			return(
-				<TouchableOpacity style={styles.FooterButton}
-				onPress={()=>this.props.Offline()}>
-					<ImageBackground source={require('../../../images/ConcertsActive.png')}
-					style={{width:size,height:size}}>	
-					</ImageBackground>
-				</TouchableOpacity>
+				<FooterButton
+					onPress={this.props.Offline}
+					image="ConcertsActive"
+				/>
 			);
 		}
 		return(
-			<TouchableOpacity style={styles.FooterButton}
-			onPress={()=>this.props.Offline()}>
-				<ImageBackground source={require('../../../images/Concerts.png')}
-				style={{width:size,height:size}}>	
-				</ImageBackground>
-			</TouchableOpacity>
+			<FooterButton
+					onPress={this.props.Offline}
+					image="Concerts"
+				/>
 		);
 	}
 
 	Search() {
 		if (this.props.active==='Search'){
 			return(
-				<TouchableOpacity style={styles.FooterButton}
-				onPress={()=>this.props.Search()}>
-					<ImageBackground source={require('../../../images/AddActive.png')}
-					style={{width:size,height:size}}>	
-					</ImageBackground>
-				</TouchableOpacity>
+				<FooterButton
+					onPress={this.props.Search}
+					image="AddActive"
+				/>
 			);
 		}
 		return(
-			<TouchableOpacity style={styles.FooterButton}
-			onPress={()=>this.props.Search()}>
-				<ImageBackground source={require('../../../images/Add.png')}
-				style={{width:size,height:size}}>	
-				</ImageBackground>
-			</TouchableOpacity>
+			<FooterButton
+					onPress={this.props.Search}
+					image="Add"
+				/>
 		);
 	}
 
 	Profile() {
 		if (this.props.active==='Profile'){
 			return(
-				<TouchableOpacity style={styles.FooterButton}
-				onPress={()=>this.props.Profile()}>
-					<ImageBackground source={require('../../../images/ProfileActive.png')}
-					style={{width:size,height:size}}>	
-					</ImageBackground>
-				</TouchableOpacity>
+				<FooterButton
+					onPress={this.props.Profile}
+					image="ProfileActive"
+				/>
 			);
 		}
 		return(
-			<TouchableOpacity style={styles.FooterButton}
-			onPress={()=>this.props.Profile()}>
-				<ImageBackground source={require('../../../images/Profile.png')}
-				style={{width:size,height:size}}>	
-				</ImageBackground>
-			</TouchableOpacity>
+			<FooterButton
+					onPress={this.props.Profile}
+					image="Profile"
+				/>
 		);
 	}
 

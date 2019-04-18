@@ -1,0 +1,20 @@
+[
+    {
+        "songs": [
+            "Daedalus Rising",
+            "Death of the West",
+            "Fields of Rape",
+            "Peaceful Snow",
+            "Runes And Men",
+            "She Said Destroy"
+        ],
+        "songs_href": [
+            "daedalus_rising.html",
+            "death_of_the_west.html",
+            "fields_of_rape.html",
+            "peaceful_snow.html",
+            "runes_and_men.html",
+            "she_said_destroy.html"
+        ]
+    }
+]

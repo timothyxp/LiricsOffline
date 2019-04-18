@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, AsyncStorage} from 'react-native';
 import TextInput from '../../Pure/TextInput/textinput.js';
 import Footer from '../../Pure/Footer/footer.js';
 import NameSongBox from '../../Pure/NameSongBox/namesongbox.js';
@@ -15,8 +15,8 @@ class Search extends React.Component {
 	
 	  this.state = {
 	  	search:'',
-	  	data:'',
-	  	artist:''
+	  	data:this.props.data,
+	  	artist:this.props.artist
 	  };
 	}
 
@@ -27,7 +27,7 @@ class Search extends React.Component {
 	}
 
 	handleSearch = () => {
-		searchArray=this.state.search.split(' ');
+		searchArray=this.state.search.toLowerCase().split(' ');
 		search=searchArray.join('_');
 		console.log(search);
 		fetch(server.adress+`/search/${search}`)
@@ -55,10 +55,48 @@ class Search extends React.Component {
 		this.props.router.push.Lirics({
 			goToProfile:this.goToProfile,
 			goToOffline:this.goToOffline,
+			data:this.state.data,
 			href:this.state.data[0].songs_href[number],
 			artist:this.state.artist
 		},{type:'none'})
-	} 
+	}
+
+	async GetToken(token) {
+		try{
+			const token = await AsyncStorage.getItem('@storage:'+token);
+			return token;
+		}
+		catch{
+			console.log('error to get token', token);
+		}
+	}
+
+	async SetToken(token, data) {
+		try{
+			await AsyncStorage.setItem('@storage:'+token, data);
+			console.log('set token', token);
+		}
+		catch{
+			console.log('cant set token', token);
+		}
+	}
+
+	saveSong = number => {
+		href=this.state.data[0].songs_href[number];
+		fetch(server.adress+`/lirics/${this.state.artist}/${href}`)
+		.then(data=>data.json())
+		.then(data=>{
+			this.SetToken('song', `${this.state.artist}/${href}`);
+		})
+		.then(()=>{
+			console.log('srart');
+			return this.GetToken('song');
+		})
+		.then(console.log)
+		.catch(err=>{
+			console.log(err);
+		})
+	}
 
 	render() {
 		return(
@@ -72,6 +110,7 @@ class Search extends React.Component {
 				<View style={styles.Content}>
 					<NameSongBox 
 					goToSong={this.goToSong}
+					saveSong={this.saveSong}
 					parent={this}
 					names={this.state.data}/>
 				</View>

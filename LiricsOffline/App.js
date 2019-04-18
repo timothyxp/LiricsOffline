@@ -8,9 +8,9 @@ import Lirics from './src/components/Screen/Lirics/lirics.js';
 const routes = {Profile, Search, Offline, Lirics};
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <Router routes={routes} initialRoute="Profile"/>
-    );
+  	render() {
+    	return (
+      		<Router routes={routes} initialRoute="Profile"/>
+    	);
   }
 }
