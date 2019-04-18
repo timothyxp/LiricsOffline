@@ -1,0 +1,44 @@
+[
+    {
+        "songs": [
+            "Angel",
+            "Antistar",
+            "Atlas Air",
+            "Black Milk",
+            "Dissolved Girl",
+            "Girl I Love You",
+            "I Want You",
+            "Man Next Door",
+            "Paradise Circus",
+            "Pray For Rain",
+            "Protection",
+            "Risingson",
+            "Safe from Harm",
+            "Small Time Shot Away",
+            "Special Cases",
+            "Splitting the Atom",
+            "Teardrop*",
+            "Unfinished Sympathy"
+        ],
+        "songs_href": [
+            "angel.html",
+            "antistar.html",
+            "atlas_air.html",
+            "black_milk.html",
+            "dissolved_girl.html",
+            "girl_i_love_you.html",
+            "i_want_you.html",
+            "man_next_door.html",
+            "paradise_circus.html",
+            "pray_for_rain.html",
+            "protection.html",
+            "risingson.html",
+            "safe_from_harm.html",
+            "small_time_shot_away.html",
+            "special_cases.html",
+            "splitting_the_atom.html",
+            "teardrop.html",
+            "unfinished_sympathy.html"
+        ]
+    }
+]

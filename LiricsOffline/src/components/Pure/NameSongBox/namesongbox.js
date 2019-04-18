@@ -19,7 +19,8 @@ class NameSongBox extends React.Component {
 					this.props.names[0].songs.map((key, index)=>{
 					return (
 						<View key={index} style={styles.NameSong}>
-							<TouchableOpacity style={styles.NameBlock}>
+							<TouchableOpacity style={styles.NameBlock}
+							onPress={()=>this.props.goToSong.call(this.props.parent, index)}>
 								<Text style={styles.NameText}>{key}</Text>
 							</TouchableOpacity>
 							<TouchableOpacity style={styles.Download}>

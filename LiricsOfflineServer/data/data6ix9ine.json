@@ -1,0 +1,28 @@
+[
+    {
+        "songs": [
+            "BILLY",
+            "FEFE",
+            "KANGA",
+            "KIKA",
+            "KOODA",
+            "MAMA",
+            "STOOPID",
+            "TATI",
+            "WAKA",
+            "WONDO"
+        ],
+        "songs_href": [
+            "billy.html",
+            "fefe.html",
+            "kanga.html",
+            "kika.html",
+            "kooda.html",
+            "mama.html",
+            "stoopid.html",
+            "tati.html",
+            "waka.html",
+            "wondo.html"
+        ]
+    }
+]

@@ -56,7 +56,7 @@ class Search extends React.Component {
 			goToProfile:this.goToProfile,
 			goToOffline:this.goToOffline,
 			href:this.state.data[0].songs_href[number],
-			artist:this.state.search
+			artist:this.state.artist
 		},{type:'none'})
 	} 
 
@@ -70,7 +70,10 @@ class Search extends React.Component {
 					onSubmitEditing={this.handleSearch}/>
 				</View>
 				<View style={styles.Content}>
-					<NameSongBox names={this.state.data}/>
+					<NameSongBox 
+					goToSong={this.goToSong}
+					parent={this}
+					names={this.state.data}/>
 				</View>
 				<Footer 
 					active='Search'

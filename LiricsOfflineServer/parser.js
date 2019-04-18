@@ -1,8 +1,10 @@
 const osmosis = require('osmosis');
 const fs = require('fs');
 
-async get_text = url => {
+get_text = url => {
 	textData=[]
+	console.log(url);
+	return(
 	osmosis
 	.get(url)
 	.find('#click_area')
@@ -11,15 +13,8 @@ async get_text = url => {
 		'transkate':['div .translate']
 	})
 	.data(data=>{
-		console.log(data);
 		textData.push(data);
-	})
-	.done(()=>{
-		fs.writeFile(`text.json`, JSON.stringify(textData, null, 4), err => {
-    		if (err) console.log(err);
-    		else console.log(`Data saved to text.json`);
-    	})
-	})
+	}));
 }
 
 module.exports.get_text=get_text

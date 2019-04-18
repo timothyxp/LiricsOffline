@@ -36,9 +36,23 @@ app.get("/lirics/:artist/:song", (request, response) => {
 	artist=request.params.artist;
 	song=request.params.song;
 	console.log(artist, song);
-	url=
-	data = await get_text(`https://www.amalgama-lab.com/songs/${artist[0]}/${artist}/${song}`);
-
+	url=`https://www.amalgama-lab.com/songs/${artist[0]}/${artist}/${song}`;
+	textData=[]
+	console.log(url);
+	osmosis
+	.get(url)
+	.find('#click_area')
+	.set({
+		'original':['div .original'],
+		'transkate':['div .translate']
+	})
+	.data(data=>{
+		textData.push(data);
+	})
+	.done(()=>{
+		console.log('send song:', song);
+		response.send(JSON.stringify(textData));
+	});
 })
 
 // начинаем прослушивать подключения на 3000 порту
