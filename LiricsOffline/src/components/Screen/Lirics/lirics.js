@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import Footer from '../../Pure/Footer/footer.js';
+import SongText from '../../Pure/SongText/songtext.js';
 
 import server from '../../../../server.json';
 
@@ -40,32 +41,10 @@ class Lirics extends React.Component {
 	render() {
 		return (
 			<View style={styles.Lirics}>
-				<View style={styles.ScrollLirics}>
-					<ScrollView>
-						<View style={styles.Content}>
-							<View style={styles.Original}>
-								{this.state.data == '' ?
-								<Text></Text>:
-								this.state.data[0].original.map((key,index)=>{
-									return (
-										<View style={styles.Content} key={index}>
-											<View style={styles.Original}>
-												<Text>
-													{key}
-												</Text>
-											</View>
-											<View style={styles.Translate}>
-												<Text>
-													{this.state.data[0].transkate[index]}
-												</Text>
-											</View>
-										</View>
-									)
-								})}
-							</View>
-						</View>
-					</ScrollView>
-				</View>
+				<SongText
+					name={this.props.name}
+					data={this.state.data}
+				/>
 				<Footer
 					active='Search'
 					Quit={this.props.router.pop}

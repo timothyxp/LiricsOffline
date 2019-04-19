@@ -7,10 +7,15 @@ export const styles = StyleSheet.create({
 	'Offline':{
 		flex: 1,
 		flexDirection: 'column',
-		backgroundColor: CommonColor
+		backgroundColor: CommonColor,
+		backgroundColor: '#eee',
 	},
 	'Content':{
 		flex: 1,
 		flexDirection: 'column',
+	},
+	SongBox:{
+		flex: 1,
+		marginTop: 50,
 	},
 });

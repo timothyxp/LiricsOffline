@@ -28,6 +28,9 @@ app.get("/search/:searchtext", function(request, response){
     		else console.log(`Data saved to data${text}.json`);
     	});
     	console.log('send data');
+    	if (songsData.length==0){
+    		songsData=undefined;
+    	}
     	response.send(JSON.stringify(songsData));
     })
 });

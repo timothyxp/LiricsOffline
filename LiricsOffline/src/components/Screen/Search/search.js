@@ -4,7 +4,6 @@ import TextInput from '../../Pure/TextInput/textinput.js';
 import Footer from '../../Pure/Footer/footer.js';
 import NameSongBox from '../../Pure/NameSongBox/namesongbox.js';
 
-import data from './data.json';
 
 import server from '../../../../server.json';
 import {styles} from './searchstyle.js';
@@ -57,14 +56,16 @@ class Search extends React.Component {
 			goToOffline:this.goToOffline,
 			data:this.state.data,
 			href:this.state.data[0].songs_href[number],
+			name:this.state.data[0].songs[number],
 			artist:this.state.artist
 		},{type:'none'})
 	}
 
 	async GetToken(token) {
 		try{
-			const token = await AsyncStorage.getItem('@storage:'+token);
-			return token;
+			const value = await AsyncStorage.getItem(token);
+			console.log('get token', token);
+			return value;
 		}
 		catch{
 			console.log('error to get token', token);
@@ -73,7 +74,7 @@ class Search extends React.Component {
 
 	async SetToken(token, data) {
 		try{
-			await AsyncStorage.setItem('@storage:'+token, data);
+			await AsyncStorage.setItem(token, data);
 			console.log('set token', token);
 		}
 		catch{
@@ -83,19 +84,17 @@ class Search extends React.Component {
 
 	saveSong = number => {
 		href=this.state.data[0].songs_href[number];
+		name=this.state.data[0].songs[number];
 		fetch(server.adress+`/lirics/${this.state.artist}/${href}`)
 		.then(data=>data.json())
 		.then(data=>{
-			this.SetToken('song', `${this.state.artist}/${href}`);
+			//this.SetToken('songs', `${this.state.artist}_${name}`);
+			this.SetToken(`${this.state.artist}_${name}`, JSON.stringify(data));
 		})
-		.then(()=>{
-			console.log('srart');
-			return this.GetToken('song');
-		})
-		.then(console.log)
 		.catch(err=>{
 			console.log(err);
 		})
+
 	}
 
 	render() {
@@ -109,6 +108,7 @@ class Search extends React.Component {
 				</View>
 				<View style={styles.Content}>
 					<NameSongBox 
+					isDownload={true}
 					goToSong={this.goToSong}
 					saveSong={this.saveSong}
 					parent={this}
