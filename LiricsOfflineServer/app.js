@@ -22,14 +22,15 @@ app.get("/search/:searchtext", function(request, response){
     	songsData.push(data);
     })
     .done(() =>{
-    	//get_text(`https://www.amalgama-lab.com/songs/t/twenty_one_pilots/${songsData[0].songs_href[10]}`);
     	fs.writeFile(`data/data${text}.json`, JSON.stringify(songsData, null, 4), err => {
     		if (err) console.log(err);
     		else console.log(`Data saved to data${text}.json`);
     	});
     	console.log('send data');
     	if (songsData.length==0){
-    		songsData=undefined;
+    		songsData={
+                result:'404'
+            };
     	}
     	response.send(JSON.stringify(songsData));
     })
@@ -50,11 +51,8 @@ app.get("/lirics/:artist/:song", (request, response) => {
 		'transkate':['div .translate']
 	})
 	.data(data=>{
-		textData.push(data);
-	})
-	.done(()=>{
-		console.log('send song:', song);
-		response.send(JSON.stringify(textData));
+        console.log('send song:', song);
+        response.send(JSON.stringify(data));
 	});
 })
 
