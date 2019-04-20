@@ -21,8 +21,12 @@ export const styles = StyleSheet.create({
 		marginLeft: 20,
 	},
 	NameText:{
-		color: '#BBBEC3',
-		fontSize: 15,
+		color: '#F6F7FB',
+		fontSize: 16,
+	},
+	ArtistText:{
+		color:'#666A70',
+		fontSize: 12,
 	},
 	Download:{
 		flex: 1,

@@ -1,9 +1,11 @@
 import React from 'react';
-import {View, AsyncStorage, Text} from 'react-native';
+import {View, Text} from 'react-native';
 import Footer from '../../Pure/Footer/footer.js';
 import {styles} from './offlinestyle.js';
 import SongText from '../../Pure/SongText/songtext.js';
 import NameSongBox from '../../Pure/NameSongBox/namesongbox.js';
+
+import {GetToken, GetAllTokens, multiRemove} from '../../../asyncstorage.js';
 
 class Offline extends React.Component {
 	constructor(props) {
@@ -18,47 +20,17 @@ class Offline extends React.Component {
 
 	goToProfile = () => {
 		this.props.router.replace.Profile({
-		},{type:'none'});
+		},{type:'right'});
 	}
 
 	goToSearch = () => {
-		this.props.router.replace.Search({
-		},{type:'none'});
-	}
-
-	async GetToken(token) {
-		try{
-			const value = await AsyncStorage.getItem(token);
-			return value;
-		}
-		catch(error){
-			console.log(error);
-		}
-	}
-
-	async GetAllTokens() {
-		try{
-			const value = await AsyncStorage.getAllKeys();
-			return value;
-		}
-		catch(error){
-			console.log(error);
-		}
-	}
-
-	async SetToken(token, data) {
-		try{
-			await AsyncStorage.setItem(token, data);
-			console.log('set token', token);
-		}
-		catch(error){
-			console.log(error);
-		}
+		this.props.router.pop({
+		});
 	}
 
 	goToSong = (number) => {
-		token=this.state.songs[0].songs[number];
-		this.GetToken(token)
+		token=this.state.songs.songs[number];
+		GetToken(token)
 		.then(data=>{
 			this.setState({
 				text:JSON.parse(data),
@@ -70,31 +42,30 @@ class Offline extends React.Component {
 
 	componentDidMount(){
 		let name;
-		this.GetAllTokens().
-		then(data=>{
+		GetAllTokens()
+		.then(data=>{
+			data.sort((first, second) => {
+				first=first.split('&')[0];
+				second=second.split('&')[0];
+				return first<second;
+			})
 			this.setState({
-				songs:[{
+				songs:{
 					songs:data
-				}]
+				}
 			});
 		});
-		/*then(data=>{
-			console.log(data);
-			name=data.split('_').pop();
-			return this.GetToken(data);
-		})
-		.then(data=>{
-			this.setState({
-				text:JSON.parse(data),
-				name:name
-			});
-		})*/
 	}
 
 	render() {
 		return(
 			<View style={styles.Offline}>
 				<View style={styles.Content}>
+					<View style={styles.Header}>
+						<Text style={styles.HeaderText}>
+						Downloaded
+						</Text>
+					</View>
 					{this.state.songs_show ? 
 						<View style={styles.SongBox}>
 							<NameSongBox
@@ -113,10 +84,12 @@ class Offline extends React.Component {
 				</View>
 				<Footer 
 					active='Offline'
-					Quit={this.props.router.pop}
+					Quit={()=>{}}
 					Profile={this.goToProfile}
 					Search={this.goToSearch}
-					Offline ={()=>{}}
+					Offline ={()=>this.setState({
+						songs_show:true
+					})}
 				/>
 			</View>
 		);

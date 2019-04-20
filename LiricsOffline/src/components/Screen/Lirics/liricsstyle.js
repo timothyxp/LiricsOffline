@@ -5,6 +5,7 @@ const Screen_Width = Dimensions.get('window').width;
 export const styles=StyleSheet.create({
 	Lirics:{
 		flex: 1,
+		marginTop: 20,
 		backgroundColor: '#eee',
 	},
 	ScrollLirics:{

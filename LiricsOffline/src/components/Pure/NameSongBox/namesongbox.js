@@ -16,24 +16,29 @@ class NameSongBox extends React.Component {
 				<ScrollView>
 				{this.props.names == undefined ?
 				<Text></Text> :
-					this.props.names[0].songs.map((key, index)=>{
-					return (
-						<View key={index} style={styles.NameSong}>
-							<TouchableOpacity style={styles.NameBlock}
-							onPress={()=>this.props.goToSong.call(this.props.parent, index)}>
-								<Text style={styles.NameText}>{key}</Text>
-							</TouchableOpacity>
-							{this.props.isDownload ? 
-								<TouchableOpacity style={styles.Download}
-								onPress={()=>this.props.saveSong.call(this.props.parent, index)}>
-									<Image source={require('../../../images/download.png')}
-									style={{width: 25,height: 25,}}/>
+					this.props.names.songs.map((key, index)=>{
+						name=key.split('&')
+						artist=name[0]
+						name=name[1]
+						artist=artist.split('_').join(' ')
+						return (
+							<View key={index} style={styles.NameSong}>
+								<TouchableOpacity style={styles.NameBlock}
+								onPress={()=>this.props.goToSong.call(this.props.parent, index)}>
+									<Text style={styles.NameText}>{name}</Text>
+									<Text style={styles.ArtistText}>{artist}</Text>
 								</TouchableOpacity>
-								:
-								undefined
-							}
-						</View>
-					);
+								{this.props.isDownload ? 
+									<TouchableOpacity style={styles.Download}
+									onPress={()=>this.props.saveSong.call(this.props.parent, index)}>
+										<Image source={require('../../../images/download.png')}
+										style={{width: 25,height: 25,}}/>
+									</TouchableOpacity>
+									:
+									undefined
+								}
+							</View>
+						);
 				})}
 				</ScrollView>
 			</View>

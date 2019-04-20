@@ -1,8 +1,10 @@
 import React from 'react';
-import {View, Text, AsyncStorage} from 'react-native';
+import {View, Text} from 'react-native';
 import TextInput from '../../Pure/TextInput/textinput.js';
 import Footer from '../../Pure/Footer/footer.js';
 import NameSongBox from '../../Pure/NameSongBox/namesongbox.js';
+
+import {SetToken} from '../../../asyncstorage.js';
 
 
 import server from '../../../../server.json';
@@ -32,6 +34,9 @@ class Search extends React.Component {
 		fetch(server.adress+`/search/${search}`)
 		.then(data=>data.json())
 		.then(data=>{
+			data=data[0];
+			data.songs=data.songs.map(song => String(search+'&'+song));
+			
 			this.setState({
 				data:data,
 				artist:search
@@ -43,11 +48,11 @@ class Search extends React.Component {
 	}
 
 	goToProfile = () => {
-		this.props.router.replace.Profile({},{type:'none'})
+		this.props.router.push.Profile({},{type:'right'})
 	}
 
 	goToOffline = () => {
-		this.props.router.replace.Offline({},{type:'none'})
+		this.props.router.push.Offline({},{type:'left'})
 	}
 
 	goToSong = number =>{
@@ -55,53 +60,31 @@ class Search extends React.Component {
 			goToProfile:this.goToProfile,
 			goToOffline:this.goToOffline,
 			data:this.state.data,
-			href:this.state.data[0].songs_href[number],
-			name:this.state.data[0].songs[number],
+			href:this.state.data.songs_href[number],
+			name:this.state.data.songs[number],
 			artist:this.state.artist
 		},{type:'none'})
 	}
 
-	async GetToken(token) {
-		try{
-			const value = await AsyncStorage.getItem(token);
-			console.log('get token', token);
-			return value;
-		}
-		catch{
-			console.log('error to get token', token);
-		}
-	}
-
-	async SetToken(token, data) {
-		try{
-			await AsyncStorage.setItem(token, data);
-			console.log('set token', token);
-		}
-		catch{
-			console.log('cant set token', token);
-		}
-	}
 
 	saveSong = number => {
-		href=this.state.data[0].songs_href[number];
-		name=this.state.data[0].songs[number];
+		href=this.state.data.songs_href[number];
+		name=this.state.data.songs[number];
 		fetch(server.adress+`/lirics/${this.state.artist}/${href}`)
 		.then(data=>data.json())
 		.then(data=>{
-			//this.SetToken('songs', `${this.state.artist}_${name}`);
-			this.SetToken(`${this.state.artist}_${name}`, JSON.stringify(data));
+			SetToken(`${name}`, JSON.stringify(data));
 		})
 		.catch(err=>{
 			console.log(err);
 		})
-
 	}
 
 	render() {
 		return(
 			<View style={styles.Search}>
 				<View style={styles.SearchInput}>
-					<TextInput placegolder='Введите название'
+					<TextInput placeholder='Enter artist name'
 					value={this.state.search}
 					onChangeText={this.handleSearchChange}
 					onSubmitEditing={this.handleSearch}/>

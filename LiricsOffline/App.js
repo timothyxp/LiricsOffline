@@ -10,7 +10,7 @@ const routes = {Profile, Search, Offline, Lirics};
 export default class App extends React.Component {
   	render() {
     	return (
-      		<Router routes={routes} initialRoute="Profile"/>
+      		<Router routes={routes} initialRoute="Search"/>
     	);
   }
 }

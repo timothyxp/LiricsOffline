@@ -10,7 +10,7 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon_app.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -23,7 +23,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.timothyxp.LiricsOffline",
+       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.timothyxp.LiricsOffline"
     }
   }
 }

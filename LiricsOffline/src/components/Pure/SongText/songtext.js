@@ -7,7 +7,7 @@ class SongText extends React.Component {
 			<View style={styles.ScrollLirics}>
 					<View style={styles.Name}>
 						<Text style={styles.NameText}>
-							{this.props.name}
+							{this.props.name.split('&')[1]}
 						</Text>
 					</View>
 					<ScrollView>
@@ -58,7 +58,7 @@ const styles=StyleSheet.create({
 	},
 	ScrollLirics:{
 		flex: 1,
-		marginTop: 20,
+		backgroundColor: '#eee',
 	},
 	Content:{
 		flex: 1,
