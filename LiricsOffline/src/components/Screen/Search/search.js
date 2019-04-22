@@ -34,6 +34,13 @@ class Search extends React.Component {
 		fetch(server.adress+`/search/${search}`)
 		.then(data=>data.json())
 		.then(data=>{
+			if(data.result === '404') {
+				this.setState({
+					data:'404',
+					artist:''
+				});
+				return;
+			}
 			data=data[0];
 			data.songs=data.songs.map(song => String(search+'&'+song));
 			

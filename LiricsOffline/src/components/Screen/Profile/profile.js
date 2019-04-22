@@ -29,9 +29,9 @@ export default class Profile extends React.Component {
 			<View style={styles.Profile}>
 				<View style={styles.Content}>
 					<View style={styles.Header}>
-							<Text style={styles.Heading}>
-							Профиль
-							</Text>
+						<Text style={styles.HeaderText}>
+						Профиль
+						</Text>
 					</View>
 					<View style={styles.Self}>		
 						<Text style={styles.Name}>Тимофей Смирнов</Text>

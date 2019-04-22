@@ -20,7 +20,7 @@ class Offline extends React.Component {
 
 	goToProfile = () => {
 		this.props.router.replace.Profile({
-		},{type:'right'});
+		},{type:'left'});
 	}
 
 	goToSearch = () => {
@@ -63,7 +63,7 @@ class Offline extends React.Component {
 				<View style={styles.Content}>
 					<View style={styles.Header}>
 						<Text style={styles.HeaderText}>
-						Downloaded
+						Загруженное
 						</Text>
 					</View>
 					{this.state.songs_show ? 

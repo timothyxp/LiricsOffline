@@ -42,5 +42,49 @@
             "strangers.html",
             "sucker_punch.html"
         ]
+    },
+    {
+        "songs": [
+            "Basic",
+            "Business Dinners",
+            "Don't Feel Like Crying",
+            "Don't Kill My Vibe",
+            "Dynamite",
+            "Everybody Knows*",
+            "Fake Friends",
+            "High Five",
+            "I Don't Want to Know",
+            "In Vain",
+            "Level Up",
+            "Mine Right Now",
+            "Never Mine",
+            "Plot Twist",
+            "Raw",
+            "Schedules",
+            "Sight of You",
+            "Strangers",
+            "Sucker Punch"
+        ],
+        "songs_href": [
+            "basic.html",
+            "business_dinners.html",
+            "don_t_feel_like_crying.html",
+            "don_t_kill_my_vibe.html",
+            "dynamite.html",
+            "everybody_knows.html",
+            "fake_friends.html",
+            "high_five.html",
+            "i_don_t_want_to_know.html",
+            "in_vain.html",
+            "level_up.html",
+            "mine_right_now.html",
+            "never_mine.html",
+            "plot_twist.html",
+            "raw.html",
+            "schedules.html",
+            "sight_of_you.html",
+            "strangers.html",
+            "sucker_punch.html"
+        ]
     }
 ]

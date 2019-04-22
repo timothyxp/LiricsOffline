@@ -85,16 +85,19 @@ export const styles=StyleSheet.create({
 		alignSelf: 'flex-start',
 		width:Screen_width,
 		padding: 3,
+		backgroundColor: '#1D1E21',
+		maxHeight: 70,
+		paddingTop:10,
+		marginBottom: 40,
+		borderBottomWidth: 1,
+		borderBottomColor: '#ACB0B1',
+		borderStyle: 'solid',
 	},
-	Heading: {
-		fontSize: 28,
+	HeaderText: {
+		fontSize: 22,
 		color: 'white',
-		fontWeight: '400',
-		paddingLeft: 10,
-		paddingRight: 10,
-		paddingTop: 10,
-		paddingBottom: 10,
+		fontWeight: '700',
 		textAlign: 'center',
-		padding: 3,
+		paddingTop: 15
 	}
 });

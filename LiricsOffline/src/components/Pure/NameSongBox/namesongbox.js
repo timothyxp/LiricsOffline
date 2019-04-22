@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
 
 import {styles} from './namesongboxstyles.js';
+import NotFound from '../NotFound/notfound.js';
 
 class NameSongBox extends React.Component {
 	constructor(props) {
@@ -13,10 +14,12 @@ class NameSongBox extends React.Component {
 	render() {
 		return( 
 			<View style={styles.NameBox}>	
+				{this.props.names === '404' ?
+				<NotFound/>:
+				this.props.names == undefined ?
+				undefined :
 				<ScrollView>
-				{this.props.names == undefined ?
-				<Text></Text> :
-					this.props.names.songs.map((key, index)=>{
+					{this.props.names.songs.map((key, index)=>{
 						name=key.split('&')
 						artist=name[0]
 						name=name[1]
@@ -39,8 +42,9 @@ class NameSongBox extends React.Component {
 								}
 							</View>
 						);
-				})}
+					})}
 				</ScrollView>
+				}
 			</View>
 		);
 	}
