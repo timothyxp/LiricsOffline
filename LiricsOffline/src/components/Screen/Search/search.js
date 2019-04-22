@@ -28,8 +28,14 @@ class Search extends React.Component {
 	}
 
 	handleSearch = () => {
-		searchArray=this.state.search.toLowerCase().split(' ');
-		search=searchArray.join('_');
+		search = this.state.search;
+		let index=this.state.search.length-1;
+		while(index != -1 && search[index]==' ')
+			index--;
+		search = search.substring(0, index + 1);
+
+		searchArray=search.toLowerCase().split(' ');
+		search=searchArray.join('_'); 
 		console.log(search);
 		fetch(server.adress+`/search/${search}`)
 		.then(data=>data.json())

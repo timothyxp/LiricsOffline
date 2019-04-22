@@ -45,9 +45,7 @@ class Offline extends React.Component {
 		GetAllTokens()
 		.then(data=>{
 			data.sort((first, second) => {
-				first=first.split('&')[0];
-				second=second.split('&')[0];
-				return first<second;
+				return first>second;
 			})
 			this.setState({
 				songs:{
@@ -84,7 +82,12 @@ class Offline extends React.Component {
 				</View>
 				<Footer 
 					active='Offline'
-					Quit={()=>{}}
+					Quit={()=>{
+						GetAllTokens()
+						.then(data=>{
+							multiRemove(data);
+						})
+					}}
 					Profile={this.goToProfile}
 					Search={this.goToSearch}
 					Offline ={()=>this.setState({
