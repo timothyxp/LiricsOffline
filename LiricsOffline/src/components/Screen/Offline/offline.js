@@ -82,12 +82,7 @@ class Offline extends React.Component {
 				</View>
 				<Footer 
 					active='Offline'
-					Quit={()=>{
-						GetAllTokens()
-						.then(data=>{
-							multiRemove(data);
-						})
-					}}
+					Quit={()=>{}}
 					Profile={this.goToProfile}
 					Search={this.goToSearch}
 					Offline ={()=>this.setState({

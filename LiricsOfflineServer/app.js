@@ -6,10 +6,11 @@ const express = require("express");
 // создаем объект приложения
 const app = express();
 // определяем обработчик для маршрута "/"
+
 app.get("/search/:searchtext", function(request, response){
-    text=request.params.searchtext;
+    let text=request.params.searchtext;
     console.log(text);
-    songsData = []
+    let songsData = []
 
     osmosis
     .get(`https://www.amalgama-lab.com/songs/${text[0]}/${text}/`)
@@ -37,11 +38,11 @@ app.get("/search/:searchtext", function(request, response){
 });
 
 app.get("/lirics/:artist/:song", (request, response) => {
-	artist=request.params.artist;
-	song=request.params.song;
+	let artist=request.params.artist;
+	let song=request.params.song;
 	console.log(artist, song);
-	url=`https://www.amalgama-lab.com/songs/${artist[0]}/${artist}/${song}`;
-	textData=[]
+	let url=`https://www.amalgama-lab.com/songs/${artist[0]}/${artist}/${song}`;
+	let textData=[]
 	console.log(url);
 	osmosis
 	.get(url)
