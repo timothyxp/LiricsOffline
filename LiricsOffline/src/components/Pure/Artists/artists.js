@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {styles} from './artistsstyle.js';
 
 class Artists extends React.Component {
@@ -25,7 +25,7 @@ class Artists extends React.Component {
 					<View style={styles.ArtistImage}>
 					</View>
 					<Text style={styles.ArtistNameText}>
-						{this.props.name}
+						{this.props.name.split('_').join(' ')}
 					</Text>
 				</TouchableOpacity>
 				{!this.state.show ? 
@@ -33,6 +33,7 @@ class Artists extends React.Component {
 					this.props.songs.map((key, index)=>{
 					name=key;
 					artist=this.props.name;
+					artist=artist.split('_').join(' ');
 					return (
 						<View key={index} style={styles.NameSong}>
 							<TouchableOpacity style={styles.NameBlock}

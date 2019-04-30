@@ -53,10 +53,12 @@ class NameSongBox extends React.Component {
 				<ScrollView>
 					{Object.keys(this.artist_songs).map((key, index) =>{
 						return(
-						<Artists name={key} key={index} 
-						songs={this.artist_songs[key]} 
-						parent={this.props.parent}
-						goToSong={this.props.goToSong}/>
+							<Artists name={key} key={index} 
+							songs={this.artist_songs[key]} 
+							parent={this.props.parent}
+							goToSong={this.props.goToSong}
+							isDownload={this.props.isDownload}
+							saveSong={this.props.saveSong}/>
 						);
 						})
 
