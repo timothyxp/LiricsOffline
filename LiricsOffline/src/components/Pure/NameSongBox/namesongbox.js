@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
 
 import {styles} from './namesongboxstyles.js';
 import NotFound from '../NotFound/notfound.js';
+import Artists from '../Artists/artists.js';
 
 class NameSongBox extends React.Component {
 	constructor(props) {
@@ -11,38 +12,53 @@ class NameSongBox extends React.Component {
 	  this.state = {};
 	}
 
+	unique(arr) {
+		res=[]
+		for(let i=0;i<arr.length;i++){
+			if(arr[i]===arr[i+1]) 
+				continue;
+			res.push(arr[i]);
+		}
+
+		return res;
+	}
+
+	update() {
+		if(this.props.names == undefined)
+			return;
+		artist_songs = {
+		};
+		this.props.names.songs.map((key, index) => {
+			name=key.split('&');
+			artist=name[0]
+			name=name[1];
+			if(artist_songs[artist] === undefined) {
+				artist_songs[artist] = [name];
+			} else {
+				artist_songs[artist].push(name);
+			}
+		});
+
+		this.artist_songs = artist_songs;
+	}
+
 	render() {
+		this.update();
 		return( 
 			<View style={styles.NameBox}>	
 				{this.props.names === '404' ?
 				<NotFound/>:
-				this.props.names == undefined ?
+				this.artist_songs == undefined ?
 				undefined :
 				<ScrollView>
-					{this.props.names.songs.map((key, index)=>{
-						name=key.split('&')
-						artist=name[0]
-						name=name[1]
-						artist=artist.split('_').join(' ')
-						return (
-							<View key={index} style={styles.NameSong}>
-								<TouchableOpacity style={styles.NameBlock}
-								onPress={()=>this.props.goToSong.call(this.props.parent, index)}>
-									<Text style={styles.NameText}>{name}</Text>
-									<Text style={styles.ArtistText}>{artist}</Text>
-								</TouchableOpacity>
-								{this.props.isDownload ? 
-									<TouchableOpacity style={styles.Download}
-									onPress={()=>this.props.saveSong.call(this.props.parent, index)}>
-										<Image source={require('../../../images/download.png')}
-										style={{width: 25,height: 25,}}/>
-									</TouchableOpacity>
-									:
-									undefined
-								}
-							</View>
+					{Object.keys(this.artist_songs).map((key, index) =>{
+						return(
+						<Artists name={key} key={index} 
+						songs={this.artist_songs[key]} />
 						);
-					})}
+						})
+
+					}
 				</ScrollView>
 				}
 			</View>

@@ -3,6 +3,10 @@ import {View, Text, ImageBackground,
  import FooterButton from '../FooterButton/footerbutton.js';
 import React from 'react';
 
+import {
+	OrangeBorderColor
+} from '../../../commonstyle.js';
+
 const size=28;
 const FooterHeight = 72;
 

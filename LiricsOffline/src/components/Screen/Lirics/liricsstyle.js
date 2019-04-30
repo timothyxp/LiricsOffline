@@ -2,11 +2,17 @@ import {StyleSheet, Dimensions} from 'react-native';
 
 const Screen_Width = Dimensions.get('window').width;
 
+import {
+	LiricsBackground,
+	LiricsRightBackground,
+	LiricsBottomBackground
+} from '../../../commonstyle.js';
+
 export const styles=StyleSheet.create({
 	Lirics:{
 		flex: 1,
 		marginTop: 20,
-		backgroundColor: '#eee',
+		backgroundColor: LiricsBackground,
 	},
 	ScrollLirics:{
 		flex: 1,
@@ -20,14 +26,14 @@ export const styles=StyleSheet.create({
 		flex: 1,
 		width: Screen_Width/2,
 		borderRightWidth: 1,
-		borderRightColor: '#BBBEC3',
+		borderRightColor: LiricsRightBackground,
 		borderStyle: 'solid',
 		paddingRight: 5,
 		paddingLeft: 5,
 		paddingTop: 5,
 		paddingBottom:5,
 		borderBottomWidth: 1,
-		borderBottomColor: '#DDDCDD',
+		borderBottomColor: LiricsBottomBackground,
 		borderStyle: 'solid',
 	},
 	Translate:{
@@ -38,7 +44,7 @@ export const styles=StyleSheet.create({
 		paddingTop: 5,
 		paddingBottom:5,
 		borderBottomWidth: 1,
-		borderBottomColor: '#DDDCDD',
+		borderBottomColor: LiricsBottomBackground,
 		borderStyle: 'solid',
 	},
 })

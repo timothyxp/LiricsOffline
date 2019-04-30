@@ -1,5 +1,14 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
+import {
+	HeaderColor,
+	HeaderBottomColor,
+	CounterColor,
+	HeaderTextColor,
+	HeaderTextSize,
+	HeaderTextWeight
+} from '../../../commonstyle.js';
+
 const Screen_width=Dimensions.get('window').width;
 
 export const styles=StyleSheet.create({
@@ -69,13 +78,13 @@ export const styles=StyleSheet.create({
 		marginBottom: 10,
 	},
 	Count:{
-		color:'white',
+		color:CounterColor,
 		textAlign: 'center',
 		fontSize: 20,
 		textAlign:'right'
 	},
 	Name:{
-		color:'white',
+		color:CounterColor,
 		textAlign: 'center',
 		fontSize: 24,
 		padding: 3,
@@ -85,18 +94,18 @@ export const styles=StyleSheet.create({
 		alignSelf: 'flex-start',
 		width:Screen_width,
 		padding: 3,
-		backgroundColor: '#1D1E21',
+		backgroundColor: HeaderColor,
 		maxHeight: 70,
 		paddingTop:10,
 		marginBottom: 40,
 		borderBottomWidth: 1,
-		borderBottomColor: '#ACB0B1',
+		borderBottomColor: HeaderBottomColor,
 		borderStyle: 'solid',
 	},
 	HeaderText: {
-		fontSize: 22,
-		color: 'white',
-		fontWeight: '700',
+		fontSize: HeaderTextSize,
+		color: HeaderTextColor,
+		fontWeight: HeaderTextWeight,
 		textAlign: 'center',
 		paddingTop: 15
 	}

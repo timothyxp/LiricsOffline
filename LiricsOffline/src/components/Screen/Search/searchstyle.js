@@ -7,8 +7,7 @@ export const styles = StyleSheet.create({
 	Search:{
 		flex: 1,
 		flexDirection: 'column',
-		backgroundColor: CommonColor, 
-		backgroundColor: '#25292F',
+		backgroundColor: CommonColor,
 	},
 	Content:{
 		flex: 1,
@@ -18,8 +17,5 @@ export const styles = StyleSheet.create({
 		marginTop: 30,
 		marginRight: 15,
 		marginLeft: 15,
-		borderWidth: 1,
-		borderColor: '#25292F',
-		borderStyle: 'solid',	
 	}
 });

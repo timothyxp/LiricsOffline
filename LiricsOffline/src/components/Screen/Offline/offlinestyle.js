@@ -1,6 +1,11 @@
 import {StyleSheet} from 'react-native';
 
-import {CommonColor
+import {CommonColor,
+	HeaderColor,
+	HeaderBottomColor,
+	HeaderTextColor,
+	HeaderTextWeight,
+	HeaderTextSize
 }from '../../../commonstyle.js';
 
 export const styles = StyleSheet.create({
@@ -8,23 +13,22 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'column',
 		backgroundColor: CommonColor,
-		backgroundColor: '#25292F',
 	},
 	Header:{
-		backgroundColor: '#1D1E21',
+		backgroundColor: HeaderColor,
 		flex: 1,
 		maxHeight: 70,
 		alignItems: 'center',
 		justifyContent: 'center',
 		borderBottomWidth: 2,
-		borderBottomColor: '#ACB0B1',
+		borderBottomColor: HeaderBottomColor,
 		borderStyle: 'solid',
 		paddingTop:10
 	},
 	HeaderText:{
-		color:'white',
-		fontSize: 22,
-		fontWeight: "700",
+		color:HeaderTextColor,
+		fontSize: HeaderTextSize,
+		fontWeight: HeaderTextWeight,
 	},
 	'Content':{
 		flex: 1,
