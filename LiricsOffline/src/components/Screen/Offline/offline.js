@@ -32,11 +32,12 @@ class Offline extends React.Component {
 		token=this.state.songs.songs[number];
 		GetToken(token)
 		.then(data=>{
-			this.setState({
-				text:JSON.parse(data),
+			this.props.router.push.OfflineLirics({
 				name:token,
-				songs_show:false
-			});
+				data:JSON.parse(data),
+				goToSearch:this.goToSearch,
+				goToProfile:this.goToProfile
+			}, {'type':'none'});
 		})
 	}
 
@@ -64,21 +65,14 @@ class Offline extends React.Component {
 						Загруженное
 						</Text>
 					</View>
-					{this.state.songs_show ? 
-						<View style={styles.SongBox}>
-							<NameSongBox
-								isDownload={false}
-								goToSong={this.goToSong}
-								saveSong={this.saveSong}
-								parent={this}
-								names={this.state.songs}/>
-						</View>
-						:
-						<SongText
-							name={this.state.name}
-							data={this.state.text}
-						/>
-					}
+					<View style={styles.SongBox}>
+						<NameSongBox
+							isDownload={false}
+							goToSong={this.goToSong}
+							saveSong={this.saveSong}
+							parent={this}
+							names={this.state.songs}/>
+					</View>
 				</View>
 				<Footer 
 					active='Offline'
