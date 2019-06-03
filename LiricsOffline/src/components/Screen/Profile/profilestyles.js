@@ -108,5 +108,12 @@ export const styles=StyleSheet.create({
 		fontWeight: HeaderTextWeight,
 		textAlign: 'center',
 		paddingTop: 15
+	},
+	Config:{
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	Version:{
+		color:'white'
 	}
 });

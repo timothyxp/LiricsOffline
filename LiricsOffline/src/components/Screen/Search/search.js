@@ -1,14 +1,21 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import TextInput from '../../Pure/TextInput/textinput.js';
+import {View, Text, TextInput, Keyboard, TouchableOpacity} from 'react-native';
+//import TextInput from '../../Pure/TextInput/textinput.js';
 import Footer from '../../Pure/Footer/footer.js';
 import NameSongBox from '../../Pure/NameSongBox/namesongbox.js';
+
+import {PacmanIndicator} from 'react-native-indicators';
 
 import {SetToken} from '../../../asyncstorage.js';
 
 
 import server from '../../../../server.json';
 import {styles} from './searchstyle.js';
+
+import Icon from 'react-native-vector-icons/Ionicons';
+
+import * as Animatable from 'react-native-animatable';
+
 
 class Search extends React.Component {
 	constructor(props) {
@@ -17,8 +24,34 @@ class Search extends React.Component {
 	  this.state = {
 	  	search:'',
 	  	data:this.props.data,
-	  	artist:this.props.artist
+	  	artist:this.props.artist,
+	  	isKeyboard:false,
+	  	isLoading:false
 	  };
+	}
+
+	componentDidMount() {
+		this.keyboard_did_show = Keyboard.addListener("keyboardDidShow", this.keyboardDidShow);
+		this.keyboard_will_show = Keyboard.addListener("keyboardWillShow", this.keyboardWillShow);
+		this.keyboard_will_hide = Keyboard.addListener("keyboardWillHide", this.keyboardWillHide);
+	}
+
+	keyboardDidShow = () => {
+		this.setState({
+			isKeyboard:true
+		});
+	}
+
+	keyboardWillShow = () => {
+		this.setState({
+			isKeyboard:true
+		});
+	}
+
+	keyboardWillHide = () => {
+		this.setState({
+			isKeyboard:false
+		});
 	}
 
 	handleSearchChange = (text) => {
@@ -28,6 +61,9 @@ class Search extends React.Component {
 	}
 
 	handleSearch = () => {
+		this.setState({
+			isLoading: true
+		});
 		search = this.state.search;
 		let index=this.state.search.length-1;
 		while(index != -1 && search[index]==' ')
@@ -50,10 +86,13 @@ class Search extends React.Component {
 			data=data[0];
 			data.songs=data.songs.map(song => String(search+'&'+song));
 			
-			this.setState({
-				data:data,
-				artist:search
-			});
+			setTimeout(() => {
+				this.setState({
+					data:data,
+					artist:search,
+					isLoading: false
+				});
+			}, 2000);
 		})
 		.catch(err=>{
 			console.log(err);
@@ -61,11 +100,11 @@ class Search extends React.Component {
 	}
 
 	goToProfile = () => {
-		this.props.router.push.Profile({},{type:'right'})
+		this.props.router.replace.Profile({},{type:'right'})
 	}
 
 	goToOffline = () => {
-		this.props.router.push.Offline({},{type:'left'})
+		this.props.router.replace.Offline({},{type:'left'})
 	}
 
 	goToSong = number =>{
@@ -76,7 +115,10 @@ class Search extends React.Component {
 			href:this.state.data.songs_href[number],
 			name:this.state.data.songs[number],
 			artist:this.state.artist
-		},{type:'none'})
+		},{
+			type:'bottom',
+			duration: 300
+		});
 	}
 
 
@@ -96,13 +138,26 @@ class Search extends React.Component {
 	render() {
 		return(
 			<View style={styles.Search}>
-				<View style={styles.SearchInput}>
-					<TextInput placeholder='Enter artist name'
-					value={this.state.search}
-					onChangeText={this.handleSearchChange}
-					onSubmitEditing={this.handleSearch}/>
+				<View style={styles.SearchInputBlock}>
+					<Animatable.View animation="slideInRight" duration={2000} style={styles.SearchInput}>
+						<TouchableOpacity onPress={()=>Keyboard.dismiss()}>
+								<Animatable.View animation={this.state.isKeyboard ? "fadeInLeft" : "fadeInRight"}
+								duration={400}>
+									<Icon name={this.state.isKeyboard ? "md-arrow-back" : "ios-search"}
+									 style={styles.SearchIcon}/>
+								</Animatable.View>
+						</TouchableOpacity>
+						<TextInput placeholder='Enter artist name'
+						style={styles.TextInput}
+						value={this.state.search}
+						onChangeText={this.handleSearchChange}
+						onSubmitEditing={this.handleSearch}/>
+					</Animatable.View>
 				</View>
-				<View style={styles.Content}>
+				{this.state.isLoading ? <View style={{height: 100,}}>
+						<PacmanIndicator color='white' size={70}/>
+				</View> : undefined}
+				<View style={this.state.isKeyboard ? styles.ContentKeyboard : styles.Content}>
 					<NameSongBox 
 					isDownload={true}
 					goToSong={this.goToSong}

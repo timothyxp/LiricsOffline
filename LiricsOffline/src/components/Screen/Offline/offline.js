@@ -24,8 +24,7 @@ class Offline extends React.Component {
 	}
 
 	goToSearch = () => {
-		this.props.router.pop({
-		});
+		this.props.router.replace.Search({},{type:'right'});
 	}
 
 	goToSong = (number) => {
@@ -37,7 +36,7 @@ class Offline extends React.Component {
 				data:JSON.parse(data),
 				goToSearch:this.goToSearch,
 				goToProfile:this.goToProfile
-			}, {'type':'none'});
+			}, {'type':'bottom'});
 		})
 	}
 

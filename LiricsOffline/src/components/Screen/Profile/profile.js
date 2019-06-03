@@ -5,6 +5,8 @@ import {styles} from './profilestyles.js'
 
 import Footer from '../../Pure/Footer/footer.js';
 
+import config from '../../../../app.json';
+
 export default class Profile extends React.Component {
 	constructor(props) {
 		super(props);
@@ -20,8 +22,7 @@ export default class Profile extends React.Component {
 	}
 
 	goToSearch = () => {
-		this.props.router.pop({
-		},{type:'left'});
+		this.props.router.replace.Search({},{type:'left'})
 	}
 
 	render() {
@@ -39,6 +40,9 @@ export default class Profile extends React.Component {
 							<Image source={require('../../../images/user.png')}
 							style={{width: 100,height: 100,}}/>
 						</View>
+					</View>
+					<View style={styles.Config}>
+						<Text style={styles.Version}>v.{config.expo.version}</Text>
 					</View>
 					<View style={styles.Stats}>
 						<View style={styles.Concerts}>

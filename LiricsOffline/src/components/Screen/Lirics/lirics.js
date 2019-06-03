@@ -32,10 +32,10 @@ class Lirics extends React.Component {
 	}
 
 	goBack = () => {
-		this.props.router.stack[0].replace.Search({
-				data:this.props.data,
-				artist:this.state.artist
-		}, {type:'none'});
+		this.props.router.pop({
+			type:'top',
+			duration: 300
+		});
 	}
 
 	render() {

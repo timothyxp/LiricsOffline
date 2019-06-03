@@ -12,17 +12,6 @@ class NameSongBox extends React.Component {
 	  this.state = {};
 	}
 
-	unique(arr) {
-		res=[]
-		for(let i=0;i<arr.length;i++){
-			if(arr[i]===arr[i+1]) 
-				continue;
-			res.push(arr[i]);
-		}
-
-		return res;
-	}
-
 	update() {
 		if(this.props.names == undefined)
 			return;
@@ -33,10 +22,12 @@ class NameSongBox extends React.Component {
 			artist=name[0]
 			name=name[1];
 			if(artist_songs[artist] === undefined) {
-				artist_songs[artist] = [name];
-			} else {
-				artist_songs[artist].push(name);
+				artist_songs[artist] = [];
 			}
+			artist_songs[artist].push({
+				name:name,
+				index:index
+			});
 		});
 
 		this.artist_songs = artist_songs;
@@ -58,7 +49,8 @@ class NameSongBox extends React.Component {
 							parent={this.props.parent}
 							goToSong={this.props.goToSong}
 							isDownload={this.props.isDownload}
-							saveSong={this.props.saveSong}/>
+							saveSong={this.props.saveSong}
+							/>
 						);
 						})
 

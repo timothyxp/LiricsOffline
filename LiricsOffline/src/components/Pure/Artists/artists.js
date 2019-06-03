@@ -30,10 +30,11 @@ class Artists extends React.Component {
 				</TouchableOpacity>
 				{!this.state.show ? 
 				undefined : 
-					this.props.songs.map((key, index)=>{
-					name=key;
-					artist=this.props.name;
+					this.props.songs.map((key)=>{
+					let name=key.name;
+					let artist=this.props.name;
 					artist=artist.split('_').join(' ');
+					let index=key.index;
 					return (
 						<View key={index} style={styles.NameSong}>
 							<TouchableOpacity style={styles.NameBlock}
