@@ -18,11 +18,11 @@ export default class Profile extends React.Component {
 
 	goToOffline = () => {
 		this.props.router.replace.Offline({
-		},{type:'left'});
+		},{type:'none'});
 	}
 
 	goToSearch = () => {
-		this.props.router.replace.Search({},{type:'left'})
+		this.props.router.replace.Search({},{type:'none'})
 	}
 
 	render() {

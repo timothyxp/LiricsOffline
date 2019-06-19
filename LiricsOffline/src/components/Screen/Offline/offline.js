@@ -20,11 +20,13 @@ class Offline extends React.Component {
 
 	goToProfile = () => {
 		this.props.router.replace.Profile({
-		},{type:'left'});
+		},{
+			type:'none'
+		});
 	}
 
 	goToSearch = () => {
-		this.props.router.replace.Search({},{type:'right'});
+		this.props.router.replace.Search({},{type:'none'});
 	}
 
 	goToSong = (number) => {

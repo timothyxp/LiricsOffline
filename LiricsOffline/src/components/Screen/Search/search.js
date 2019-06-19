@@ -22,11 +22,12 @@ class Search extends React.Component {
 	  super(props);
 	
 	  this.state = {
-	  	search:'',
+		  search:'',
+		  lastSearch:'',
 	  	data:this.props.data,
 	  	artist:this.props.artist,
 	  	isKeyboard:false,
-	  	isLoading:false
+	  	isLoading:false,
 	  };
 	}
 
@@ -60,9 +61,19 @@ class Search extends React.Component {
 		});
 	}
 
+	searchValidation = () => {
+		if(this.state.search === this.state.lastSearch || this.state.search==="")
+			return false;
+		return true;
+	} 
+
 	handleSearch = () => {
+		if(!this.searchValidation())
+			return;
+		new_data = this.state.data === "404" ? undefined : this.state.data;
 		this.setState({
-			isLoading: true
+			isLoading: true,
+			data:new_data
 		});
 		search = this.state.search;
 		let index=this.state.search.length-1;
@@ -76,10 +87,12 @@ class Search extends React.Component {
 		fetch(server.adress+`/search/${search}`)
 		.then(data=>data.json())
 		.then(data=>{
-			if(data.result === '404') {
+			console.log(data);
+			if(data.result === '404' || data.result === undefined) {
 				this.setState({
 					data:'404',
-					artist:''
+					artist:'',
+					isLoading: false
 				});
 				return;
 			}
@@ -100,11 +113,11 @@ class Search extends React.Component {
 	}
 
 	goToProfile = () => {
-		this.props.router.replace.Profile({},{type:'right'})
+		this.props.router.replace.Profile({},{type:'none'})
 	}
 
 	goToOffline = () => {
-		this.props.router.replace.Offline({},{type:'left'})
+		this.props.router.replace.Offline({},{type:'none'})
 	}
 
 	goToSong = number =>{
@@ -139,7 +152,7 @@ class Search extends React.Component {
 		return(
 			<View style={styles.Search}>
 				<View style={styles.SearchInputBlock}>
-					<Animatable.View animation="slideInRight" duration={2000} style={styles.SearchInput}>
+					<Animatable.View animation="slideInRight" duration={1500} style={styles.SearchInput}>
 						<TouchableOpacity onPress={()=>Keyboard.dismiss()}>
 								<Animatable.View animation={this.state.isKeyboard ? "fadeInLeft" : "fadeInRight"}
 								duration={400}>

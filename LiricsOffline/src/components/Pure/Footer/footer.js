@@ -4,11 +4,11 @@ import {View, Text, ImageBackground,
 import React from 'react';
 
 import {
-	OrangeBorderColor
+	OrangeBorderColor,
+	FooterHeight
 } from '../../../commonstyle.js';
 
 const size=28;
-const FooterHeight = 72;
 
 export default class Footer extends React.Component {
 	Quit() {

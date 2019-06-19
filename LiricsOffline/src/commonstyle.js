@@ -19,3 +19,5 @@ export const SongBottomWidth=2
 
 export const OrangeBorderColor='#F26D0C87'
 export const ArtistColor='#E9EF04'
+export const FooterHeight=50;
+export const FooterButtonSize=24;
