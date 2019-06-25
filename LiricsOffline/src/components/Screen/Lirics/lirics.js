@@ -7,13 +7,14 @@ import server from '../../../../server.json';
 
 import {styles} from './liricsstyle.js';
 
+
 class Lirics extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state={
-			href:this.props.href,
-			artist:this.props.artist,
+			href:this.props.navigation.getParam("href"),
+			artist:this.props.navigation.getParam("artist"),
 			data:''
 		}
 	}

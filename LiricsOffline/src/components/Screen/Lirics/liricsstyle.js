@@ -33,8 +33,7 @@ export const styles=StyleSheet.create({
 		paddingTop: 5,
 		paddingBottom:5,
 		borderBottomWidth: 1,
-		borderBottomColor: LiricsBottomBackground,
-		borderStyle: 'solid',
+		borderBottomColor: LiricsBottomBackground
 	},
 	Translate:{
 		flex: 1,

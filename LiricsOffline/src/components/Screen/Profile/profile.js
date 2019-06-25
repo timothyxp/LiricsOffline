@@ -17,12 +17,17 @@ export default class Profile extends React.Component {
 	}
 
 	goToOffline = () => {
-		this.props.router.replace.Offline({
-		},{type:'none'});
+		this.props.navigation.navigate("Offline",
+		{
+			type:'none'
+		});
 	}
 
 	goToSearch = () => {
-		this.props.router.replace.Search({},{type:'none'})
+		this.props.navigation.navigate("Search",
+			{
+				type:'none'
+			});
 	}
 
 	render() {
@@ -83,7 +88,7 @@ export default class Profile extends React.Component {
 				</View>
 			<Footer 
 				active="Profile"
-				Quit={this.props.router.pop}
+				Quit={()=>this.props.router.pop}
 				Profile={()=>{}}
 				Search={this.goToSearch}
 				Offline ={this.goToOffline}

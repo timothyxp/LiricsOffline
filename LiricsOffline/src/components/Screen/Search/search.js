@@ -62,7 +62,7 @@ class Search extends React.Component {
 	}
 
 	searchValidation = () => {
-		if(this.state.search === this.state.lastSearch || this.state.search==="")
+		if (this.state.search === this.state.lastSearch || this.state.search==="")
 			return false;
 		return true;
 	} 
@@ -77,7 +77,7 @@ class Search extends React.Component {
 		});
 		search = this.state.search;
 		let index=this.state.search.length-1;
-		while(index != -1 && search[index]==' ')
+		while(index !== -1 && search[index]===' ')
 			index--;
 		search = search.substring(0, index + 1);
 
@@ -113,15 +113,22 @@ class Search extends React.Component {
 	}
 
 	goToProfile = () => {
-		this.props.router.replace.Profile({},{type:'none'})
+		this.props.navigation.navigate(
+			"Profile",
+			{type:'none'}
+			);
 	}
 
 	goToOffline = () => {
-		this.props.router.replace.Offline({},{type:'none'})
+		this.props.navigation.navigate(
+			"Offline",
+			{type:'none'}
+			);
 	}
 
 	goToSong = number =>{
-		this.props.router.push.Lirics({
+		this.props.navigation.push("Lirics",
+			{
 			goToProfile:this.goToProfile,
 			goToOffline:this.goToOffline,
 			data:this.state.data,
@@ -180,7 +187,7 @@ class Search extends React.Component {
 				</View>
 				<Footer 
 					active='Search'
-					Quit={this.props.router.pop}
+					Quit={()=>this.props.router.pop}
 					Profile={this.goToProfile}
 					Search={()=>{}}
 					Offline={this.goToOffline}
