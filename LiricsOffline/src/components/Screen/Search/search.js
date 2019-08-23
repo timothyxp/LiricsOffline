@@ -88,7 +88,8 @@ class Search extends React.Component {
 		.then(data=>data.json())
 		.then(data=>{
 			console.log(data);
-			if(data.result === '404' || data.result === undefined) {
+			if(data.result === '404') {
+				console.log("have 404");
 				this.setState({
 					data:'404',
 					artist:'',
@@ -131,7 +132,6 @@ class Search extends React.Component {
 			{
 			goToProfile:this.goToProfile,
 			goToOffline:this.goToOffline,
-			data:this.state.data,
 			href:this.state.data.songs_href[number],
 			name:this.state.data.songs[number],
 			artist:this.state.artist

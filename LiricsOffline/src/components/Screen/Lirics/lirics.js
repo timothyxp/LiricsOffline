@@ -15,7 +15,8 @@ class Lirics extends React.Component {
 		this.state={
 			href:this.props.navigation.getParam("href"),
 			artist:this.props.navigation.getParam("artist"),
-			data:''
+			data:'',
+			name:this.props.navigation.getParam("name")
 		}
 	}
 
@@ -33,25 +34,22 @@ class Lirics extends React.Component {
 	}
 
 	goBack = () => {
-		this.props.router.pop({
-			type:'top',
-			duration: 300
-		});
-	}
+		this.props.navigation.goBack()
+	};
 
 	render() {
 		return (
 			<View style={styles.Lirics}>
 				<SongText
-					name={this.props.name}
+					name={this.state.name}
 					data={this.state.data}
 				/>
 				<Footer
 					active='Search'
-					Quit={this.props.router.pop}
-					Profile={this.props.goToProfile}
+					Quit={() => this.props.router.pop}
+					Profile={this.props.navigation.getParam("goToProfile")}
 					Search={this.goBack}		
-					Offline={this.props.goToOffline}
+					Offline={this.props.navigation.getParam("goToOffline")}
 				/>
 			</View>
 		);

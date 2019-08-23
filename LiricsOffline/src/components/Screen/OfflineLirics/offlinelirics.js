@@ -10,7 +10,7 @@ import {styles} from './offlineliricsstyle.js';
 class OfflineLirics extends React.Component {
 	goBack = () => {
 		this.props.navigation.goBack();
-	}
+	};
 
 	render() {
 		return (

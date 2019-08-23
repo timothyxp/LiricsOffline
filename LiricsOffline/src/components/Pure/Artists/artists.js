@@ -18,22 +18,25 @@ class Artists extends React.Component {
 		});
 	}
 
-	getProgressBar = (progress) => {
-		if(progress === 1){
+	getProgressBar = (progress, index) => {
+		if (progress === 1) {
 			return (
 				<View style={styles.Download}>
 					<MaterialIndicator size={25} color="#FFFFFF"/>
 				</View>
 			);
 		}
-		return (
-			<TouchableOpacity style={styles.Download}
-			onPress={()=>this.props.saveSong.call(this.props.parent, index)}>
-				<Image source={require('../../../images/download.png')}
-				style={{width: 25,height: 25,}}/>
-			</TouchableOpacity>
-		);
-	}
+		if (progress === 0) {
+			return (
+				<TouchableOpacity style={styles.Download}
+								  onPress={() => this.props.saveSong.call(this.props.parent, index)}>
+					<Image source={require('../../../images/download.png')}
+						   style={{width: 25, height: 25,}}/>
+				</TouchableOpacity>
+			);
+		}
+		return undefined;
+	};
 
 	render() {
 		return(
@@ -53,7 +56,7 @@ class Artists extends React.Component {
 						let artist=this.props.name;
 						artist=artist.split('_').join(' ');
 						let index=key.index;
-						let progress = 1;
+						let progress = 0;
 						return (
 							<View key={index} style={styles.NameSong}>
 								<TouchableOpacity style={styles.NameBlock}
@@ -62,7 +65,7 @@ class Artists extends React.Component {
 									<Text style={styles.ArtistText}>{artist}</Text>
 								</TouchableOpacity>
 								{this.props.isDownload ?
-									this.getProgressBar(progress)
+									this.getProgressBar(progress, index)
 									:undefined
 								}
 							</View>

@@ -34,7 +34,8 @@ const AppNavigator = createStackNavigator({
 	defaultNavigationOptions: {
 		headerStyle: {
 			display: "none"
-		}
+		},
+
 	}
 });
 
