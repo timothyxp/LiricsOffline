@@ -8,44 +8,22 @@ import server from '../../../../server.json';
 import {styles} from './offlineliricsstyle.js';
 
 class OfflineLirics extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state={
-			href:this.props.href,
-			artist:this.props.artist,
-		}
-	}
-
-	goToProfile = () => {
-		this.props.router.replace.Profile({
-		},{type:'left'});
-	}
-
-	goToSearch = () => {
-		this.props.router.push.Search({},
-		{type:'right'});
-	}
-
 	goBack = () => {
-		this.props.router.pop({
-			type:'top',
-			duration:300
-		});
-	}
+		this.props.navigation.goBack();
+	};
 
 	render() {
 		return (
 			<View style={styles.Lirics}>
 				<SongText
-					name={this.props.name}
-					data={this.props.data}
+					name={this.props.navigation.getParam("name")}
+					data={this.props.navigation.getParam("data")}
 				/>
 				<Footer
 					active='Offline'
-					Quit={this.props.router.pop}
-					Profile={this.goToProfile}
-					Search={this.goToSearch}		
+					Quit={()=>this.props.router.pop}
+					Profile={this.props.navigation.getParam("goToProfile")}
+					Search={this.props.navigation.getParam("goToSearch")}
 					Offline={this.goBack}
 				/>
 			</View>

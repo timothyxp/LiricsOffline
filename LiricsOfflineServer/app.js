@@ -10,7 +10,7 @@ const app = express();
 app.get("/search/:searchtext", function(request, response){
     let text=request.params.searchtext;
     console.log(text);
-    let songsData = []
+    let songsData = [];
 
     osmosis
     .get(`https://www.amalgama-lab.com/songs/${text[0]}/${text}/`)

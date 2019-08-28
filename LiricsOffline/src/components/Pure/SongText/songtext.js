@@ -17,7 +17,7 @@ class SongText extends React.Component {
 						</Text>
 					</View>
 					<View style={styles.Content}>
-						{this.props.data == '' ?
+						{this.props.data === '' ?
 						undefined:
 						this.props.data.original.map((key,index)=>{
 							return (
@@ -84,7 +84,6 @@ const styles=StyleSheet.create({
 		paddingBottom:5,
 		borderBottomWidth: 1,
 		borderBottomColor: '#DDDCDDFF',
-		borderStyle: 'solid',
 	},
 	Translate:{
 		flexBasis: Screen_Width/2,

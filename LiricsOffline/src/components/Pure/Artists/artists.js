@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {MaterialIndicator} from 'react-native-indicators';
 import {styles} from './artistsstyle.js';
 
 class Artists extends React.Component {
@@ -17,6 +18,26 @@ class Artists extends React.Component {
 		});
 	}
 
+	getProgressBar = (progress, index) => {
+		if (progress === 1) {
+			return (
+				<View style={styles.Download}>
+					<MaterialIndicator size={25} color="#FFFFFF"/>
+				</View>
+			);
+		}
+		if (progress === 0) {
+			return (
+				<TouchableOpacity style={styles.Download}
+								  onPress={() => this.props.saveSong.call(this.props.parent, index)}>
+					<Image source={require('../../../images/download.png')}
+						   style={{width: 25, height: 25,}}/>
+				</TouchableOpacity>
+			);
+		}
+		return undefined;
+	};
+
 	render() {
 		return(
 			<View style={styles.Content}>
@@ -31,28 +52,24 @@ class Artists extends React.Component {
 				{!this.state.show ? 
 				undefined : 
 					this.props.songs.map((key)=>{
-					let name=key.name;
-					let artist=this.props.name;
-					artist=artist.split('_').join(' ');
-					let index=key.index;
-					return (
-						<View key={index} style={styles.NameSong}>
-							<TouchableOpacity style={styles.NameBlock}
-							onPress={()=>this.props.goToSong.call(this.props.parent, index)}>
-								<Text style={styles.NameText}>{name}</Text>
-								<Text style={styles.ArtistText}>{artist}</Text>
-							</TouchableOpacity>
-							{this.props.isDownload ? 
-								<TouchableOpacity style={styles.Download}
-								onPress={()=>this.props.saveSong.call(this.props.parent, index)}>
-									<Image source={require('../../../images/download.png')}
-									style={{width: 25,height: 25,}}/>
+						let name=key.name;
+						let artist=this.props.name;
+						artist=artist.split('_').join(' ');
+						let index=key.index;
+						let progress = 0;
+						return (
+							<View key={index} style={styles.NameSong}>
+								<TouchableOpacity style={styles.NameBlock}
+								onPress={()=>this.props.goToSong.call(this.props.parent, index)}>
+									<Text style={styles.NameText}>{name}</Text>
+									<Text style={styles.ArtistText}>{artist}</Text>
 								</TouchableOpacity>
-								:
-								undefined
-							}
-						</View>
-					);
+								{this.props.isDownload ?
+									this.getProgressBar(progress, index)
+									:undefined
+								}
+							</View>
+						);
 				})}
 			</View>
 		);

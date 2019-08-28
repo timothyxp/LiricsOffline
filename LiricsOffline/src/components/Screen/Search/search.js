@@ -22,11 +22,12 @@ class Search extends React.Component {
 	  super(props);
 	
 	  this.state = {
-	  	search:'',
+		  search:'',
+		  lastSearch:'',
 	  	data:this.props.data,
 	  	artist:this.props.artist,
 	  	isKeyboard:false,
-	  	isLoading:false
+	  	isLoading:false,
 	  };
 	}
 
@@ -60,13 +61,23 @@ class Search extends React.Component {
 		});
 	}
 
+	searchValidation = () => {
+		if (this.state.search === this.state.lastSearch || this.state.search==="")
+			return false;
+		return true;
+	} 
+
 	handleSearch = () => {
+		if(!this.searchValidation())
+			return;
+		new_data = this.state.data === "404" ? undefined : this.state.data;
 		this.setState({
-			isLoading: true
+			isLoading: true,
+			data:new_data
 		});
 		search = this.state.search;
 		let index=this.state.search.length-1;
-		while(index != -1 && search[index]==' ')
+		while(index !== -1 && search[index]===' ')
 			index--;
 		search = search.substring(0, index + 1);
 
@@ -76,10 +87,13 @@ class Search extends React.Component {
 		fetch(server.adress+`/search/${search}`)
 		.then(data=>data.json())
 		.then(data=>{
+			console.log(data);
 			if(data.result === '404') {
+				console.log("have 404");
 				this.setState({
 					data:'404',
-					artist:''
+					artist:'',
+					isLoading: false
 				});
 				return;
 			}
@@ -100,18 +114,24 @@ class Search extends React.Component {
 	}
 
 	goToProfile = () => {
-		this.props.router.replace.Profile({},{type:'right'})
+		this.props.navigation.navigate(
+			"Profile",
+			{type:'none'}
+			);
 	}
 
 	goToOffline = () => {
-		this.props.router.replace.Offline({},{type:'left'})
+		this.props.navigation.navigate(
+			"Offline",
+			{type:'none'}
+			);
 	}
 
 	goToSong = number =>{
-		this.props.router.push.Lirics({
+		this.props.navigation.push("Lirics",
+			{
 			goToProfile:this.goToProfile,
 			goToOffline:this.goToOffline,
-			data:this.state.data,
 			href:this.state.data.songs_href[number],
 			name:this.state.data.songs[number],
 			artist:this.state.artist
@@ -139,7 +159,7 @@ class Search extends React.Component {
 		return(
 			<View style={styles.Search}>
 				<View style={styles.SearchInputBlock}>
-					<Animatable.View animation="slideInRight" duration={2000} style={styles.SearchInput}>
+					<Animatable.View animation="slideInRight" duration={1500} style={styles.SearchInput}>
 						<TouchableOpacity onPress={()=>Keyboard.dismiss()}>
 								<Animatable.View animation={this.state.isKeyboard ? "fadeInLeft" : "fadeInRight"}
 								duration={400}>
@@ -167,7 +187,7 @@ class Search extends React.Component {
 				</View>
 				<Footer 
 					active='Search'
-					Quit={this.props.router.pop}
+					Quit={()=>this.props.router.pop}
 					Profile={this.goToProfile}
 					Search={()=>{}}
 					Offline={this.goToOffline}

@@ -13,7 +13,7 @@ class NameSongBox extends React.Component {
 	}
 
 	update() {
-		if(this.props.names == undefined)
+		if(this.props.names === undefined || this.props.names === "404")
 			return;
 		artist_songs = {
 		};
@@ -37,9 +37,9 @@ class NameSongBox extends React.Component {
 		this.update();
 		return( 
 			<View style={styles.NameBox}>	
-				{this.props.names === '404' ?
+				{ this.props.names === '404' ?
 				<NotFound/>:
-				this.artist_songs == undefined ?
+				this.artist_songs === undefined ?
 				undefined :
 				<ScrollView>
 					{Object.keys(this.artist_songs).map((key, index) =>{

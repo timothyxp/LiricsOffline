@@ -19,24 +19,31 @@ class Offline extends React.Component {
 	}
 
 	goToProfile = () => {
-		this.props.router.replace.Profile({
-		},{type:'left'});
+		this.props.navigation.navigate("Profile",
+			{
+			type:'none'
+		});
 	}
 
 	goToSearch = () => {
-		this.props.router.replace.Search({},{type:'right'});
+		this.props.navigation.navigate("Search",
+			{
+				type:'none'
+			}
+			);
 	}
 
 	goToSong = (number) => {
 		token=this.state.songs.songs[number];
 		GetToken(token)
 		.then(data=>{
-			this.props.router.push.OfflineLirics({
+			this.props.navigation.navigate("OfflineLirics",
+				{
 				name:token,
 				data:JSON.parse(data),
 				goToSearch:this.goToSearch,
 				goToProfile:this.goToProfile
-			}, {'type':'bottom'});
+			});
 		})
 	}
 

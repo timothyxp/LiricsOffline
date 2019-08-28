@@ -11,7 +11,7 @@ import {
 export const styles=StyleSheet.create({
 	Lirics:{
 		flex: 1,
-		marginTop: 20,
+		paddingTop: 20,
 		backgroundColor: LiricsBackground,
 	},
 })
