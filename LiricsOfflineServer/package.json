@@ -11,7 +11,7 @@
     "url": "git+https://github.com/npm/npm.git"
   },
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "osmosis": "^1.1.10"
   },
   "bugs": {
